@@ -2,6 +2,9 @@ package mod.greece;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,12 +16,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.init.Items;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
 
@@ -36,33 +33,33 @@ public class Greece
 	.setHardness(0.5F).setStepSound(Block.soundTypeStone)
 	.setUnlocalizedName("blockMarble").setCreativeTab(CreativeTabs.tabBlock);
 	
-	/*public static Block scroll_shelf = new GreekBlockScrollshelf(Material.wood)
+	public static Block scroll_shelf = new GreekBlockScrollshelf(Material.wood)
 	.setHardness(0.5F).setStepSound(Block.soundTypeWood)
-	.setUnlocalizedName("scrollShelf").setCreativeTab(CreativeTabs.tabBlock);*/
+	.setUnlocalizedName("blockScrollShelf").setCreativeTab(CreativeTabs.tabBlock);
 
 	public static Block papyrusPlantBlock = new GreekBlockPapyrusPlant();
 
 	// ITEMS
-	/*public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock)
-	.setUnlocalizedName("papyrusPlant").setCreativeTab(CreativeTabs.tabMisc);
+	//public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock)
+	//.setUnlocalizedName("papyrusPlant").setCreativeTab(CreativeTabs.tabMisc);
 
 	public static Item papyrus = new GreekItem()
-	.setUnlocalizedName("papyrus").setCreativeTab(CreativeTabs.tabMisc);*/
+	.setUnlocalizedName("itemPapyrus").setCreativeTab(CreativeTabs.tabMisc);
 
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		// REGISTER BLOCKS
-		// Don't use getUnlocalizedName() here for the block name, apparently it will append like "tile." in front?
+		// Don't use getUnlocalizedName() here for the block name, apparently it will prepend like "tile." in front?
 		// or at least I think that's what was breaking it. Anyhow, passing a string works.
 		GameRegistry.registerBlock(marble, "blockMarble");
 		GameRegistry.registerBlock(papyrusPlantBlock, "blockPapyrusPlant");
-		//GameRegistry.registerBlock(scroll_shelf, scroll_shelf.getUnlocalizedName());
-		/*
+		GameRegistry.registerBlock(scroll_shelf, "blockScrollShelf");
+		
 
 		// REGISTER ITEMS
-		GameRegistry.registerItem(papyrusPlantItem, papyrusPlantItem.getUnlocalizedName());
-		GameRegistry.registerItem(papyrus, papyrus.getUnlocalizedName());
+		//GameRegistry.registerItem(papyrusPlantItem, papyrusPlantItem.getUnlocalizedName());
+		GameRegistry.registerItem(papyrus, "itemPapyrus");
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Blocks.diamond_block), new Object[]{
@@ -74,8 +71,8 @@ public class Greece
 
 		GameRegistry.addRecipe(new ItemStack(papyrus, 3), new Object[]{
 			"xxx",
-			'x', papyrusPlantItem
-		});*/
+			'x', papyrusPlantBlock
+		});
 	}
 
 	@EventHandler
@@ -85,14 +82,15 @@ public class Greece
 		
     	if(event.getSide() == Side.CLIENT)
     	{
-    	RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-    
-    	//blocks
-    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(marble), 0, new ModelResourceLocation("greece:blockMarble", "inventory"));
-    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(papyrusPlantBlock), 0, new ModelResourceLocation("greece:blockPapyrusPlant", "inventory"));
-    
-    	//items
-    	//renderItem.getItemModelMesher().register(tutorialItem, 0, new ModelResourceLocation(Reference.MODID + ":" + ((ItemTutorial) tutorialItem).getName(), "inventory"));
+	    	RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+	    
+	    	//blocks
+	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(marble), 0, new ModelResourceLocation("greece:blockMarble", "inventory"));
+	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(scroll_shelf), 0, new ModelResourceLocation("greece:blockScrollShelf", "inventory"));
+	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(papyrusPlantBlock), 0, new ModelResourceLocation("greece:blockPapyrusPlant", "inventory"));
+	    
+	    	//items
+	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
     	}
 	}
 
