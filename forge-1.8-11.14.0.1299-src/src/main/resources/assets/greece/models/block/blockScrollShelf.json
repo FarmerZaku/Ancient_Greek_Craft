@@ -1,15 +1,9 @@
 {
-<<<<<<< HEAD
-    "parent": "block/bookshelf",
-    "textures": {
-        "end": "blocks/planks_oak",
-        "side": "greece:blocks/blockScrollShelf"
-=======
+
     "parent": "block/orientable",
     "textures": {
         "top": "blocks/planks_oak",
         "front": "greece:blocks/blockScrollShelf",
         "side": "blocks/planks_oak"
->>>>>>> master
     }
 }
