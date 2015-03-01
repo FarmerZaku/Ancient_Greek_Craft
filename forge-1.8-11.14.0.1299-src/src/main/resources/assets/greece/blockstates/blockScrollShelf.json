@@ -1,6 +1,8 @@
-
 {
     "variants": {
-        "normal": { "model": "greece:blockScrollShelf" }
+        "facing=north": { "model": "greece:blockScrollShelf" },
+        "facing=south": { "model": "greece:blockScrollShelf", "y": 180 },
+        "facing=west":  { "model": "greece:blockScrollShelf", "y": 270 },
+        "facing=east":  { "model": "greece:blockScrollShelf", "y": 90 }
     }
 }
