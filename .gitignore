@@ -1,3 +1,20 @@
+#some whatever
+forge-1.8-11.14.0.1299-src/eclipse/
+forge-1.8-11.14.0.1299-src/bin/
+forge-1.8-11.14.0.1299-src/.settings/
+forge-1.8-11.14.0.1299-src/.gradle/
+forge-1.8-11.14.0.1299-src/build/
+forge-1.8-11.14.0.1299-src/gradle/
+forge-1.8-11.14.0.1299-src/.classpath
+forge-1.8-11.14.0.1299-src/.project
+forge-1.8-11.14.0.1299-src/forge-1.8*
+forge-1.8-11.14.0.1299-src/build.gradle
+forge-1.8-11.14.0.1299-src/CRED*
+forge-1.8-11.14.0.1299-src/grad*
+forge-1.8-11.14.0.1299-src/LIC*
+forge-1.8-11.14.0.1299-src/RE*
+forge-1.8-11.14.0.1299-src/Min*
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
