@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "greece": "greece:blocks/marble"
+        "all": "greece:blocks/blockMarble"
     }
 }

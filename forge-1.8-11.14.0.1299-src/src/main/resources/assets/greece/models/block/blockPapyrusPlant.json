@@ -1,0 +1,6 @@
+{
+    "parent": "block/reeds",
+    "textures": {
+        "all": "greece:blocks/blockPapyrusPlant"
+    }
+}

@@ -1,5 +1,5 @@
 {
-    "greece": "greece:block/marbleBlock",
+    "parent": "greece:block/blockMarble",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
