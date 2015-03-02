@@ -91,7 +91,7 @@ public class Greece
 	    
 	    	//items
 	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
-	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:papyrus_plant", "inventory"));
+	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
     	}
 	}
 
