@@ -15,7 +15,7 @@ public class GreekBlockPapyrusPlant extends BlockReed {
 	protected GreekBlockPapyrusPlant() {
         setStepSound(Block.soundTypeGrass);
         setUnlocalizedName("blockPapyrusPlant");
-        //setCreativeTab(CreativeTabs.tabBlock);
+        //setCreativeTab(CreativeTabs.tabBlock); // sugar cane blocks aren't on creative tab either.
     }
 	
 	@Override
