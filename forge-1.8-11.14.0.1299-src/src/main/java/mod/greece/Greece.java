@@ -19,10 +19,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 
-@Mod(modid = Greece.MODID, version = Greece.VERSION)
+@Mod(modid = Greece.MODID, name = Greece.NAME, version = Greece.VERSION)
 public class Greece
 {
 	public static final String MODID = "greece";
+	public static final String NAME = "AncientGreekCraft";
 	public static final String VERSION = "1.0";
 
 	@SidedProxy(clientSide="mod.greece.client.ClientProxy", serverSide="mod.greece.CommonProxy")
@@ -32,6 +33,10 @@ public class Greece
 	public static Block marble = new GreekBlock(Material.rock)
 	.setHardness(0.5F).setStepSound(Block.soundTypeStone)
 	.setUnlocalizedName("blockMarble").setCreativeTab(CreativeTabs.tabBlock);
+	
+	public final static Block marbleBrick = new GreekBlock(Material.rock)
+	.setHardness(4.0f).setStepSound(Block.soundTypeStone)
+	.setUnlocalizedName("blockMarbleBrick").setCreativeTab(CreativeTabs.tabBlock);
 	
 	public static Block scroll_shelf = new GreekBlockScrollshelf(Material.wood)
 	.setHardness(0.5F).setStepSound(Block.soundTypeWood)
@@ -52,40 +57,41 @@ public class Greece
 		// Don't use getUnlocalizedName() here for the block name, apparently it will prepend like "tile." in front?
 		// or at least I think that's what was breaking it. Anyhow, passing a string works.
 		GameRegistry.registerBlock(marble, "blockMarble");
+		GameRegistry.registerBlock(marbleBrick, "blockMarbleBrick");
 		GameRegistry.registerBlock(papyrusPlantBlock, "blockPapyrusPlant");
 		GameRegistry.registerBlock(scroll_shelf, "blockScrollShelf");
 		
 
 		// REGISTER ITEMS
-		//GameRegistry.registerItem(papyrusPlantItem, papyrusPlantItem.getUnlocalizedName());
 		GameRegistry.registerItem(papyrus, "itemPapyrus");
 		GameRegistry.registerItem(papyrusPlantItem, "itemPapyrusPlant");
 
 		// RECIPES
-		GameRegistry.addRecipe(new ItemStack(Blocks.diamond_block), new Object[]{
-			"xx ",
-			"xx ",
-			"xx ",
-			'x', Blocks.dirt
+		GameRegistry.addRecipe(new ItemStack(Greece.marbleBrick, 4), new Object[]{
+			"xx",
+			"xx",
+			//"xx ",
+			'x', Greece.marble
 		});
 
 		GameRegistry.addRecipe(new ItemStack(papyrus, 3), new Object[]{
 			"xxx",
-			'x', papyrusPlantBlock
+			'x', papyrusPlantItem
 		});
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		//System.out.println("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
-		//register renders
 		
+		//register renders
     	if(event.getSide() == Side.CLIENT)
     	{
 	    	RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 	    
 	    	//blocks
 	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(marble), 0, new ModelResourceLocation("greece:blockMarble", "inventory"));
+	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(marbleBrick), 0, new ModelResourceLocation("greece:blockMarbleBrick", "inventory"));
 	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(scroll_shelf), 0, new ModelResourceLocation("greece:blockScrollShelf", "inventory"));
 	    	renderItem.getItemModelMesher().register(Item.getItemFromBlock(papyrusPlantBlock), 0, new ModelResourceLocation("greece:blockPapyrusPlant", "inventory"));
 	    
