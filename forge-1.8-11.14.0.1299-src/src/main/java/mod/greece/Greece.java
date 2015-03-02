@@ -40,8 +40,7 @@ public class Greece
 	public static Block papyrusPlantBlock = new GreekBlockPapyrusPlant();
 
 	// ITEMS
-	public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock)
-	.setUnlocalizedName("itemPapyrusPlant").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock);
 
 	public static Item papyrus = new GreekItem()
 	.setUnlocalizedName("itemPapyrus").setCreativeTab(CreativeTabs.tabMisc);
@@ -60,6 +59,7 @@ public class Greece
 		// REGISTER ITEMS
 		//GameRegistry.registerItem(papyrusPlantItem, papyrusPlantItem.getUnlocalizedName());
 		GameRegistry.registerItem(papyrus, "itemPapyrus");
+		GameRegistry.registerItem(papyrusPlantItem, "itemPapyrusPlant");
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Blocks.diamond_block), new Object[]{
@@ -91,7 +91,7 @@ public class Greece
 	    
 	    	//items
 	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
-	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
+	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:papyrus_plant", "inventory"));
     	}
 	}
 
