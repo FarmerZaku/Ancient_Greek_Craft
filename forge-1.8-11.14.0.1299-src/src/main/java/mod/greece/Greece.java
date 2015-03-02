@@ -40,8 +40,8 @@ public class Greece
 	public static Block papyrusPlantBlock = new GreekBlockPapyrusPlant();
 
 	// ITEMS
-	//public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock)
-	//.setUnlocalizedName("papyrusPlant").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock)
+	.setUnlocalizedName("itemPapyrusPlant").setCreativeTab(CreativeTabs.tabMisc);
 
 	public static Item papyrus = new GreekItem()
 	.setUnlocalizedName("itemPapyrus").setCreativeTab(CreativeTabs.tabMisc);
@@ -91,6 +91,7 @@ public class Greece
 	    
 	    	//items
 	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
+	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
     	}
 	}
 

@@ -29,21 +29,50 @@ public class GreekBlockScrollshelf extends GreekBlock {
         
 		//System.out.println(facing.getAxisDirection().toString());
 			
+		//if (hitY == 1) {
+			//System.out.println("DOWN OR UP");
+			// ---this works pretty well---
+			float east_west_diff = (float) (placer.posX-pos.getX());
+			float north_south_diff = (float) (placer.posZ-pos.getZ());
+			if (Math.abs(east_west_diff) > Math.abs(north_south_diff)) {
+				if (placer.posX > pos.getX())
+					meta=3;
+				else meta=1;
+			}
+			else {
+				if (placer.posZ > pos.getZ())
+					meta=0;
+				else meta=2;
+			}
+			// ---the above works pretty well---
+		//}
+		
+		//else {
+		//if (placer.posX > pos.getX())
+			
+		//placer.posX
+		//System.out.println("PLACER X"+placer.posX+" BLOCK X"+pos.getX());
+		
+		
         //if (facing.getAxisDirection().toString() == "north")
 		//facing = EnumFacing.getHorizontal(1);
 		//System.out.println(facing.getFront(facing.getHorizontalIndex()));
-		System.out.println(facing.getHorizontal(facing.getHorizontalIndex()));
+		//System.out.println(facing.getHorizontal(facing.getHorizontalIndex()));
+		//System.out.println(facing.fromAngle(0));
+		//System.out.println("OFFSET X >> "+facing.getFrontOffsetX()+"OFFSET Z >> "+facing.getFrontOffsetZ());
+		//System.out.println("X >> "+hitX+" Y >> "+hitY+" Z >> "+hitZ);
 		
 		// ---this works!---
-		if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "south")
+		/*if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "south")
 			meta=0;
 		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "west")
 			meta=1;
 		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "north")
 			meta=2;
 		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "east")
-			meta=3;
+			meta=3;*/
 		// ---the above works---
+		//}
 		
         //System.out.println(facing.getName());
 		//return this.getStateFromMeta(meta);
