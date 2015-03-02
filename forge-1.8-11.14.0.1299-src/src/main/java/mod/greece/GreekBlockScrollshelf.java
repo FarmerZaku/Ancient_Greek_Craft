@@ -19,63 +19,64 @@ public class GreekBlockScrollshelf extends GreekBlock {
 	
 	protected GreekBlockScrollshelf(Material material) {
 		super(material);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.EAST));
 	}
 	
-	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!worldIn.isRemote)
-        {
-            Block block = worldIn.getBlockState(pos.north()).getBlock();
-            Block block1 = worldIn.getBlockState(pos.south()).getBlock();
-            Block block2 = worldIn.getBlockState(pos.west()).getBlock();
-            Block block3 = worldIn.getBlockState(pos.east()).getBlock();
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
-
-            if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
-            {
-                enumfacing = EnumFacing.SOUTH;
-            }
-            else if (enumfacing == EnumFacing.SOUTH && block1.isFullBlock() && !block.isFullBlock())
-            {
-                enumfacing = EnumFacing.NORTH;
-            }
-            else if (enumfacing == EnumFacing.WEST && block2.isFullBlock() && !block3.isFullBlock())
-            {
-                enumfacing = EnumFacing.EAST;
-            }
-            else if (enumfacing == EnumFacing.EAST && block3.isFullBlock() && !block2.isFullBlock())
-            {
-                enumfacing = EnumFacing.WEST;
-            }
-
-            worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
-        }
-    }
-	
-	
 	// sets metadata to be used for proper texture rotation.
-	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-        int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-
-        if (l == 0) {
-        	par1World.setBlockState(new BlockPos(par2,par3,par4), getStateFromMeta(2), 2);
-            //par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 2);
+	@Override
+	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        //int l = MathHelper.floor_double((double)(par5EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        
+		//System.out.println(facing.getAxisDirection().toString());
+			
+        //if (facing.getAxisDirection().toString() == "north")
+		//facing = EnumFacing.getHorizontal(1);
+		//System.out.println(facing.getFront(facing.getHorizontalIndex()));
+		System.out.println(facing.getHorizontal(facing.getHorizontalIndex()));
+		
+		// ---this works!---
+		if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "south")
+			meta=0;
+		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "west")
+			meta=1;
+		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "north")
+			meta=2;
+		else if (facing.getHorizontal(facing.getHorizontalIndex()).getName() == "east")
+			meta=3;
+		// ---the above works---
+		
+        //System.out.println(facing.getName());
+		//return this.getStateFromMeta(meta);
+		
+        /*if (facing.getName() == "north") { //0=south, 1=west, 2=north, 3=east
+        	System.out.println("NORTH");
+        	worldIn.setBlockState(new BlockPos(hitX,hitY,hitZ), getStateFromMeta(2), 2);
+        	return this.getStateFromMeta(meta);
         }
 
-        if (l == 1) {
-        	par1World.setBlockState(new BlockPos(par2,par3,par4), getStateFromMeta(5), 2);
+        else if (facing.getName() == "south") { //1
+        	System.out.println("SOUTH");
+        	worldIn.setBlockState(new BlockPos(hitX,hitY,hitZ), getStateFromMeta(5), 2);
+        	return this.getStateFromMeta(meta);
             //par1World.setBlockMetadataWithNotify(par2, par3, par4, 5, 2);
         }
 
-        if (l == 2) {
-        	par1World.setBlockState(new BlockPos(par2,par3,par4), getStateFromMeta(3), 2);
+        else if (facing.getName() == "east") { //2
+        	System.out.println("EAST");
+        	worldIn.setBlockState(new BlockPos(hitX,hitY,hitZ), getStateFromMeta(3), 2);
+        	return this.getStateFromMeta(meta);
             //par1World.setBlockMetadataWithNotify(par2, par3, par4, 3, 2);
         }
 
-        if (l == 3) {
-        	par1World.setBlockState(new BlockPos(par2,par3,par4), getStateFromMeta(4), 2);
+        else if (facing.getName() == "west") { //3
+        	System.out.println("WEST");
+        	worldIn.setBlockState(new BlockPos(hitX,hitY,hitZ), getStateFromMeta(4), 2);
+        	return this.getStateFromMeta(meta);
             //par1World.setBlockMetadataWithNotify(par2, par3, par4, 4, 2);
-        }
+        }*/
+        
+        //else 
+        	return this.getStateFromMeta(meta);
     }
 	
 	@Override
