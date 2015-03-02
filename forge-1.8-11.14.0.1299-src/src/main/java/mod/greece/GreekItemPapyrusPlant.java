@@ -8,7 +8,9 @@ import net.minecraft.item.ItemReed;
 public class GreekItemPapyrusPlant extends ItemReed {
 
 	public GreekItemPapyrusPlant(Block to_be_planted) {
-		super(Greece.papyrusPlantBlock);
+		super(to_be_planted);
+		setUnlocalizedName("itemPapyrusPlant");
+		setCreativeTab(CreativeTabs.tabMisc);
 		// TODO Auto-generated constructor stub
 	}
 }
