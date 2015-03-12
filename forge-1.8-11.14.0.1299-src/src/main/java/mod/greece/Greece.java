@@ -8,7 +8,9 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -17,6 +19,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.EnumHelper;
 
 
 @Mod(modid = Greece.MODID, name = Greece.NAME, version = Greece.VERSION)
@@ -28,6 +32,11 @@ public class Greece
 
 	@SidedProxy(clientSide="mod.greece.client.ClientProxy", serverSide="mod.greece.CommonProxy")
 	public static CommonProxy proxy;
+	
+	//---------MATERIALS---------
+	public static ToolMaterial bronze = EnumHelper.addToolMaterial("Bronze", 2, 200, 5.0F, 2.0F, 12);
+	public static ToolMaterial clay = EnumHelper.addToolMaterial("Clay", 1, 100, 3.0F, 0.5F, 12);
+	public static ToolMaterial copper = EnumHelper.addToolMaterial("Copper", 1, 100, 3.0F, 1.0F, 18);
 
 	// BLOCKS
 	public static Block marble = new GreekBlock(Material.rock)
@@ -46,9 +55,31 @@ public class Greece
 
 	// ITEMS
 	public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock);
-
 	public static Item papyrus = new GreekItem()
 	.setUnlocalizedName("itemPapyrus").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item chisel = new GreekItemTool(bronze, 12).setUnlocalizedName("itemChisel");
+	public static Item bakingCover = new GreekItemTool(clay, 15).setUnlocalizedName("itemBakingCover");
+	public static Item fryingPanCeramic = new GreekItemTool(clay, 20).setUnlocalizedName("itemFryingPanCeramic");
+	public static Item fryingPanBronze = new GreekItemTool(bronze, 20).setUnlocalizedName("itemFryingPanBronze");
+	
+	public static Item plasterBucket = new GreekItem()
+	.setUnlocalizedName("itemPlasterBucket").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item basketEmpty = new GreekItem()
+	.setUnlocalizedName("itemBasketEmpty").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item basketGrain = new GreekItem()
+	.setUnlocalizedName("itemBasketGrain").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item basketFlour = new GreekItem()
+	.setUnlocalizedName("itemBasketFlour").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item amphora = new GreekItem()
+	.setUnlocalizedName("itemAmphora").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item amphoraGrain = new GreekItem()
+	.setUnlocalizedName("itemAmphoraGrain").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item amphoraFlour = new GreekItem()
+	.setUnlocalizedName("itemAmphoraFlour").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item straw = new GreekItem()
+	.setUnlocalizedName("itemStraw").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item dough = new GreekItem()
+	.setUnlocalizedName("itemDough").setCreativeTab(CreativeTabs.tabMisc);
 
 
 	@EventHandler
@@ -65,6 +96,7 @@ public class Greece
 		// REGISTER ITEMS
 		GameRegistry.registerItem(papyrus, "itemPapyrus");
 		GameRegistry.registerItem(papyrusPlantItem, "itemPapyrusPlant");
+		GameRegistry.registerItem(chisel, "itemChisel");
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Greece.marbleBrick, 4), new Object[]{
@@ -84,6 +116,10 @@ public class Greece
 	public void init(FMLInitializationEvent event) {
 		//System.out.println("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
 		
+		//register event handlers
+		//MinecraftForge.EVENT_BUS.register(new GreekCraftingHandler()); // wrong bus for this event
+		FMLCommonHandler.instance().bus().register(new GreekCraftingHandler());
+		
 		//register renders
     	if(event.getSide() == Side.CLIENT)
     	{
@@ -98,6 +134,7 @@ public class Greece
 	    	//items
 	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
 	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
+	    	renderItem.getItemModelMesher().register(chisel, 0, new ModelResourceLocation("greece:itemChisel", "inventory"));
     	}
 	}
 
