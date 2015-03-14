@@ -12,12 +12,10 @@ public class GreekCraftingHandler {
 		//System.out.println("CRAFTED");
 		//event.player.inventory.addItemStackToInventory((new ItemStack(Greece.papyrus, 1)));
 		
-		for(int i=0; i < event.craftMatrix.getSizeInventory(); i++)
-		{        	
-	    	if(event.craftMatrix.getStackInSlot(i) != null)
-	    	{
+		for (int i=0; i < event.craftMatrix.getSizeInventory(); i++) {        	
+	    	if (event.craftMatrix.getStackInSlot(i) != null) {
 	    		ItemStack j = event.craftMatrix.getStackInSlot(i);
-	    		if (j.getItem() != null && j.getItem().getClass() == Greece.chisel.getClass() /*== Greece.chisel || j.getItem() == Greece.bakingCover)*/ && j.getItemDamage()+10 < j.getMaxDamage())
+	    		if (j.getItem() != null && j.getItem().getClass() == Greece.chisel.getClass() && j.getItemDamage()+10 < j.getMaxDamage())
 	    		{
 	    			int oldDamage = j.getItemDamage(); 
 	    			ItemStack k;
@@ -46,6 +44,8 @@ public class GreekCraftingHandler {
 	    				k = new ItemStack(Greece.fryingPanBronze, 2, (j.getItemDamage() + damagePerUse));
 	    			}
 	    			//k.setItemDamage(oldDamage + 10);
+	    			//event.craftMatrix.clear();
+	    			//event.craftMatrix.getStackInSlot(i).
 	    			event.craftMatrix.setInventorySlotContents(i, k);
 	    		}
 	    		else if (j.getItem() != null && j.getItem().getClass() == Greece.chisel.getClass() && j.getItemDamage()+15 >= j.getMaxDamage())
