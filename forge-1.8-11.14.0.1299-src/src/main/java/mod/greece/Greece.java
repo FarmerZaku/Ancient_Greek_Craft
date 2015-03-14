@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 
@@ -100,10 +101,10 @@ public class Greece
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Greece.marbleBrick, 4), new Object[]{
-			"xx",
-			"xx",
-			//"xx ",
-			'x', Greece.marble
+			"xx ",
+			"xx ",
+			"y  ",
+			'x', marble, 'y', new ItemStack(chisel, 1, OreDictionary.WILDCARD_VALUE)
 		});
 
 		GameRegistry.addRecipe(new ItemStack(papyrus, 3), new Object[]{
