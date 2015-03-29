@@ -77,12 +77,22 @@ public class Greece
 	.setUnlocalizedName("itemBasketGrain").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item basketFlour = new GreekItem()
 	.setUnlocalizedName("itemBasketFlour").setCreativeTab(CreativeTabs.tabMisc);
+	
+	
+	// amphoras
+	public static Item amphoraUnfired = new GreekItem()
+	.setUnlocalizedName("itemAmphoraUnfired").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item amphora = new GreekItem()
 	.setUnlocalizedName("itemAmphora").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item amphoraGrain = new GreekItem()
 	.setUnlocalizedName("itemAmphoraGrain").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item amphoraFlour = new GreekItem()
 	.setUnlocalizedName("itemAmphoraFlour").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item amphoraWine = new GreekItem()
+	.setUnlocalizedName("itemAmphoraWine").setCreativeTab(CreativeTabs.tabMisc);
+	public static Item amphoraOil = new GreekItem()
+	.setUnlocalizedName("itemAmphoraOil").setCreativeTab(CreativeTabs.tabMisc);
+	
 	public static Item straw = new GreekItem()
 	.setUnlocalizedName("itemStraw").setCreativeTab(CreativeTabs.tabMisc);
 	public static Item dough = new GreekItem()
@@ -105,6 +115,17 @@ public class Greece
 		GameRegistry.registerItem(papyrusPlantItem, "itemPapyrusPlant");
 		GameRegistry.registerItem(chisel, "itemChisel");
 		GameRegistry.registerItem(bakingCover, "itemBakingCover");
+		
+		// amphoras
+		GameRegistry.registerItem(amphoraUnfired, "itemAmphoraUnfired");
+		GameRegistry.registerItem(amphora, "itemAmphora");
+		GameRegistry.registerItem(amphoraGrain, "itemAmphoraGrain");
+		GameRegistry.registerItem(amphoraFlour, "itemAmphoraFlour");
+		GameRegistry.registerItem(amphoraWine, "itemAmphoraWine");
+		GameRegistry.registerItem(amphoraOil, "itemAmphoraOil");
+		GameRegistry.addRecipe(new ItemStack(amphoraUnfired), "a a", "aaa", " a ",
+        		'a', Item.getByNameOrId("clay"));
+		GameRegistry.addSmelting(amphoraUnfired, new ItemStack(amphora), 1);
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Greece.marbleBrick, 4), new Object[]{
@@ -147,6 +168,12 @@ public class Greece
 	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
 	    	renderItem.getItemModelMesher().register(chisel, 0, new ModelResourceLocation("greece:itemChisel", "inventory"));
 	    	renderItem.getItemModelMesher().register(bakingCover, 0, new ModelResourceLocation("greece:itemBakingCover", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphoraUnfired, 0, new ModelResourceLocation("greece:itemAmphoraUnfired", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphora, 0, new ModelResourceLocation("greece:itemAmphora", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphoraGrain, 0, new ModelResourceLocation("greece:itemAmphoraGrain", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphoraFlour, 0, new ModelResourceLocation("greece:itemAmphoraFlour", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphoraWine, 0, new ModelResourceLocation("greece:itemAmphoraWine", "inventory"));
+	    	renderItem.getItemModelMesher().register(amphoraOil, 0, new ModelResourceLocation("greece:itemAmphoraOil", "inventory"));
     	}
 	}
 
