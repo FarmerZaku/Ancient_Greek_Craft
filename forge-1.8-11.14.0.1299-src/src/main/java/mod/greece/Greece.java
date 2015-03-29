@@ -10,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -53,13 +54,18 @@ public class Greece
 	.setUnlocalizedName("blockScrollShelf").setCreativeTab(CreativeTabs.tabBlock);
 
 	public static Block papyrusPlantBlock = new GreekBlockPapyrusPlant();
+	
+	public static Block multiFurnace = new GreekBlockFurnace(false)
+	.setCreativeTab(CreativeTabs.tabMisc).setUnlocalizedName("blockMultiFurnace");
 
 	// ITEMS
 	public static Item papyrusPlantItem = new GreekItemPapyrusPlant(papyrusPlantBlock);
 	public static Item papyrus = new GreekItem()
 	.setUnlocalizedName("itemPapyrus").setCreativeTab(CreativeTabs.tabMisc);
-	public static Item chisel = new GreekItemTool(bronze, 12).setUnlocalizedName("itemChisel");
+	
 	public static Item bakingCover = new GreekItemTool(clay, 15).setUnlocalizedName("itemBakingCover");
+	public static Item chisel = new GreekItemTool(bronze, 12).setUnlocalizedName("itemChisel");
+	//public static Item fryingPanUnfired = new GreekItem(clay).setUnlocalizedName("itemFryingPanCeramic");
 	public static Item fryingPanCeramic = new GreekItemTool(clay, 20).setUnlocalizedName("itemFryingPanCeramic");
 	public static Item fryingPanBronze = new GreekItemTool(bronze, 20).setUnlocalizedName("itemFryingPanBronze");
 	
@@ -92,12 +98,13 @@ public class Greece
 		GameRegistry.registerBlock(marbleBrick, "blockMarbleBrick");
 		GameRegistry.registerBlock(papyrusPlantBlock, "blockPapyrusPlant");
 		GameRegistry.registerBlock(scroll_shelf, "blockScrollShelf");
-		
+		GameRegistry.registerBlock(multiFurnace, "blockMultiFurnace");
 
 		// REGISTER ITEMS
 		GameRegistry.registerItem(papyrus, "itemPapyrus");
 		GameRegistry.registerItem(papyrusPlantItem, "itemPapyrusPlant");
 		GameRegistry.registerItem(chisel, "itemChisel");
+		GameRegistry.registerItem(bakingCover, "itemBakingCover");
 
 		// RECIPES
 		GameRegistry.addRecipe(new ItemStack(Greece.marbleBrick, 4), new Object[]{
@@ -121,6 +128,9 @@ public class Greece
 		//MinecraftForge.EVENT_BUS.register(new GreekCraftingHandler()); // wrong bus for this event
 		FMLCommonHandler.instance().bus().register(new GreekCraftingHandler());
 		
+		//register tile entities
+		GameRegistry.registerTileEntity(GreekFurnaceTileEntity.class, "MultiFurnace");
+		
 		//register renders
     	if(event.getSide() == Side.CLIENT)
     	{
@@ -136,6 +146,7 @@ public class Greece
 	    	renderItem.getItemModelMesher().register(papyrus, 0, new ModelResourceLocation("greece:itemPapyrus", "inventory"));
 	    	renderItem.getItemModelMesher().register(papyrusPlantItem, 0, new ModelResourceLocation("greece:itemPapyrusPlant", "inventory"));
 	    	renderItem.getItemModelMesher().register(chisel, 0, new ModelResourceLocation("greece:itemChisel", "inventory"));
+	    	renderItem.getItemModelMesher().register(bakingCover, 0, new ModelResourceLocation("greece:itemBakingCover", "inventory"));
     	}
 	}
 
