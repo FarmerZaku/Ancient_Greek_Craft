@@ -1,7 +1,9 @@
 tile.blockMarble.name=Marble Block
+tile.blockMarbleBricks.name=Marble Bricks
 tile.scroll_shelf.name=Scroll Shelf
 tile.blockPapyrusPlant.name=Papyrus Plant
 tile.blockScrollShelf.name=Scroll Shelf
 item.itemPapyrus.name=Papyrus
 item.itemPapyrusPlant.name=Papyrus Plant
+item.itemBakingCover.name=Baking Cover
 item.itemChisel.name=Chisel
